@@ -1,4 +1,11 @@
 WORK LOG
 
-Date		Name			Time Spent		Description of work
-11/7/2014	Steven Sheffey		5 hours			Building an OpenGL activity from a sample tutorial. Will later be repurposed for the game
+Date		    Name			        Time Spent	Description of work
+11/7/2014	  Steven Sheffey		5 hours			Building an OpenGL activity from a sample tutorial. Will later be repurposed for the game
+11/10/2014	Steven Sheffey		4 hours			Adding comments so code is more understandable
+
+
+MEETINGS
+Date        Name              Time Spent  Description
+11/10/2014  Steven Sheffey    15 Min      Discussed git and project logistics
+            Thomas Cox
