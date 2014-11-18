@@ -6,7 +6,7 @@ Date		  Name			        Time Spent	    Description of work
 11/10/2014    Steven Sheffey		4 hours			Adding comments so code is more understandable
 11/12/2014    Taylor Carrick        4 hours         Designing the flow of the game, adding a simple main menu.
 11/12/2014    Steven Sheffey        2 hours         Researching the APIs used in libGDX and writing a mid-way progress report
-
+11/17/2014    Thomas Cox 	    1 hour	    Set up Git/cloned project/researched libgdx/bed time      	
 
 
 MEETINGS
