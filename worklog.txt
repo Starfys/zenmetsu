@@ -2,11 +2,15 @@ WORK LOG
 
 Date		  Name			        Time Spent	    Description of work
 11/6/2014     Taylor Carrick        10 min          Writing a proposal
-11/7/2014     Steven Sheffey		5 hours			Building an OpenGL activity from a sample tutorial. Will later be repurposed for the game
-11/10/2014    Steven Sheffey		4 hours			Adding comments so code is more understandable
+11/7/2014     Steven Sheffey        5 hours	    Building an OpenGL activity from a sample tutorial. Will later be repurposed for the game
+11/10/2014    Steven Sheffey        4 hours         Adding comments so code is more understandable
 11/12/2014    Taylor Carrick        4 hours         Designing the flow of the game, adding a simple main menu.
 11/12/2014    Steven Sheffey        2 hours         Researching the APIs used in libGDX and writing a mid-way progress report
+<<<<<<< HEAD
 11/17/2014    Thomas Cox 	    1 hour	    Set up Git/cloned project/researched libgdx/bed time      	
+=======
+11/20/2014    Taylor Carrick        5 hours         Made a more fleshedout workable main menu
+>>>>>>> FETCH_HEAD
 
 
 MEETINGS
@@ -16,3 +20,6 @@ Date        Name              Time Spent  Description
 11/11/2014  Steven Sheffey    30 min      Discussing a switch from OpenGLES to libGDX. Met in computer lab to do testing.
             Thomas Cox
             Taylor Carrick
+11/20/2014  Steven Sheffey    45 min      Discussed menu design and future dealings
+            Thomas Cox
+            Taylor Carrick            
