@@ -27,6 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
+<<<<<<< HEAD
 public class MainMenuScreen implements Screen{
 	Texture texture;
 	TextureRegion christmasTree;
@@ -40,11 +41,19 @@ public class MainMenuScreen implements Screen{
 	Sprite sprite;
 	private TextButton menubutton;
 
+=======
+	private Skin menuSkin;
+	private Stage menuStage;
+	private SpriteBatch gameSprites;
+	private Game gameContext;
+	
+>>>>>>> origin/master
 	public MainMenuScreen( Game initGame ){
 		create();
 		gameContext = initGame;
 	}
  
+<<<<<<< HEAD
 	public MainMenuScreen(){
 		create();
 		// setup the dimensions of the menu buttons
@@ -81,15 +90,24 @@ public class MainMenuScreen implements Screen{
 		//Initialize stage
 		stage = new Stage();
 		
+=======
+	public void create()
+	{
+		//Initialize sprites
+		gameSprites = new SpriteBatch();
+		//Initialize stage
+		menuStage = new Stage();
+>>>>>>> origin/master
 		//Initialize input
-		Gdx.input.setInputProcessor( stage );
+		Gdx.input.setInputProcessor( menuStage );
 
 		//Custom skins can be made
 		//Just generating a simple one here
-		skin = new Skin();
+		menuSkin = new Skin();
 		Pixmap pixmap = new Pixmap( 100 , 100 , Format.RGBA8888 );
 		pixmap.setColor( Color.BLACK );
 		pixmap.fill();
+<<<<<<< HEAD
 		skin.add( "blackColor", new Texture( pixmap ) );
 		
 		//Store the default font
@@ -101,10 +119,20 @@ public class MainMenuScreen implements Screen{
 		//font12.scale( 2 );
 		skin.add( "defaultFont" , font12 );
 		
+=======
+		
+		menuSkin.add( "blackColor", new Texture( pixmap ) );
+		
+		//Store the default font
+		BitmapFont bfont = new BitmapFont();
+		bfont.scale( 1 );
+		menuSkin.add( "defaultFont" , bfont );
+>>>>>>> origin/master
 		
 	
 		//Design a button
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
+<<<<<<< HEAD
 		textButtonStyle.up = skin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.down = skin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.checked = skin.newDrawable("blackColor", Color.BLUE);
@@ -163,15 +191,34 @@ public class MainMenuScreen implements Screen{
 			}
 	});
 		
+=======
+		textButtonStyle.up = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
+		textButtonStyle.down = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
+		textButtonStyle.checked = menuSkin.newDrawable("blackColor", Color.BLUE);
+		textButtonStyle.over = menuSkin.newDrawable("blackColor", Color.LIGHT_GRAY);
+		textButtonStyle.font = menuSkin.getFont("defaultFont");
+		//Add to the skin
+		menuSkin.add("defaultButton" , textButtonStyle);
+		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
+		final TextButton textButton=new TextButton("PLAY",textButtonStyle);
+		textButton.setPosition(200, 200);
+		menuStage.addActor(textButton);
+		menuStage.addActor(textButton);
+		menuStage.addActor(textButton);
+>>>>>>> origin/master
 		
 	}
 	
 	@Override
 	public void dispose(){
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		stage.dispose();
 		skin.dispose();
 		//tree.dispose();
+=======
+		menuStage.dispose();
+>>>>>>> origin/master
 	}
 
 	@Override
@@ -190,6 +237,7 @@ public class MainMenuScreen implements Screen{
 	public void render( float delta ){
 		Gdx.gl20.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+<<<<<<< HEAD
 		
 	
 		//batch.setProjectionMatrix(camera.combined);
@@ -203,6 +251,10 @@ public class MainMenuScreen implements Screen{
 		stage.draw();
 		
 		
+=======
+		menuStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		menuStage.draw();
+>>>>>>> origin/master
 	}
 
 	@Override
