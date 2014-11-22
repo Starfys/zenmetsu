@@ -27,77 +27,37 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
-<<<<<<< HEAD
 public class MainMenuScreen implements Screen{
 	Texture texture;
 	TextureRegion christmasTree;
 	TextureRegion titlesprite;
-	Skin skin;
-	Stage stage;
-	SpriteBatch batch;
-	Game gameContext;
 	//OrthographicCamera camera;
 	BitmapFont font;
 	Sprite sprite;
 	private TextButton menubutton;
 
-=======
 	private Skin menuSkin;
 	private Stage menuStage;
 	private SpriteBatch gameSprites;
 	private Game gameContext;
-	
->>>>>>> origin/master
+
 	public MainMenuScreen( Game initGame ){
 		create();
 		gameContext = initGame;
 	}
- 
-<<<<<<< HEAD
+
 	public MainMenuScreen(){
 		create();
 		// setup the dimensions of the menu buttons
 	   
 	}
 	
-
-	public void create(){
-		
-	
-
-		
-		
-		
-		
-		//create textures
-		texture=new Texture(Gdx.files.internal("graphics/tree.jpg"));
-		Texture texture2 = new Texture(Gdx.files.internal("graphics/rawr.jpg"));
-		
-		
-		christmasTree=new TextureRegion(texture, 0, 0, 700,700);
-		titlesprite=new TextureRegion(texture, 0, 0, 100,300);
-		
-		//camera=new OrthographicCamera();
-		//camera.setToOrtho(false, 800,480);
-		
-		 final float BUTTON_WIDTH = 375f;
-		    final float BUTTON_HEIGHT = 60f;
-		    final float BUTTON_SPACING = 10f;
-		    
-		//Initialize sprites
-		batch = new SpriteBatch();
-		
-		//Initialize stage
-		stage = new Stage();
-		
-=======
 	public void create()
 	{
 		//Initialize sprites
 		gameSprites = new SpriteBatch();
 		//Initialize stage
 		menuStage = new Stage();
->>>>>>> origin/master
 		//Initialize input
 		Gdx.input.setInputProcessor( menuStage );
 
@@ -107,7 +67,6 @@ public class MainMenuScreen implements Screen{
 		Pixmap pixmap = new Pixmap( 100 , 100 , Format.RGBA8888 );
 		pixmap.setColor( Color.BLACK );
 		pixmap.fill();
-<<<<<<< HEAD
 		skin.add( "blackColor", new Texture( pixmap ) );
 		
 		//Store the default font
@@ -119,20 +78,16 @@ public class MainMenuScreen implements Screen{
 		//font12.scale( 2 );
 		skin.add( "defaultFont" , font12 );
 		
-=======
-		
 		menuSkin.add( "blackColor", new Texture( pixmap ) );
 		
 		//Store the default font
 		BitmapFont bfont = new BitmapFont();
 		bfont.scale( 1 );
 		menuSkin.add( "defaultFont" , bfont );
->>>>>>> origin/master
 		
 	
 		//Design a button
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
-<<<<<<< HEAD
 		textButtonStyle.up = skin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.down = skin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.checked = skin.newDrawable("blackColor", Color.BLUE);
@@ -191,7 +146,6 @@ public class MainMenuScreen implements Screen{
 			}
 	});
 		
-=======
 		textButtonStyle.up = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.down = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
 		textButtonStyle.checked = menuSkin.newDrawable("blackColor", Color.BLUE);
@@ -205,7 +159,6 @@ public class MainMenuScreen implements Screen{
 		menuStage.addActor(textButton);
 		menuStage.addActor(textButton);
 		menuStage.addActor(textButton);
->>>>>>> origin/master
 		
 	}
 	
