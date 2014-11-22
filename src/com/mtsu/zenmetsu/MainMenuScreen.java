@@ -40,7 +40,8 @@ public class MainMenuScreen implements Screen{
 	private Stage menuStage;
 	private SpriteBatch gameSprites;
 	private Game gameContext;
-
+	final int BUTTON_WIDTH = 200;
+	final int BUTTON_HEIGHT = 100;
 	public MainMenuScreen( Game initGame ){
 		create();
 		gameContext = initGame;
@@ -67,7 +68,7 @@ public class MainMenuScreen implements Screen{
 		Pixmap pixmap = new Pixmap( 100 , 100 , Format.RGBA8888 );
 		pixmap.setColor( Color.BLACK );
 		pixmap.fill();
-		skin.add( "blackColor", new Texture( pixmap ) );
+		menuSkin.add( "blackColor", new Texture( pixmap ) );
 		
 		//Store the default font
 		//BitmapFont bfont = new BitmapFont();
@@ -76,7 +77,7 @@ public class MainMenuScreen implements Screen{
 		parameter.size = 12;
 		BitmapFont font12 = generator.generateFont(parameter); // font size 12 pixels
 		//font12.scale( 2 );
-		skin.add( "defaultFont" , font12 );
+		menuSkin.add( "defaultFont" , font12 );
 		
 		menuSkin.add( "blackColor", new Texture( pixmap ) );
 		
@@ -88,14 +89,14 @@ public class MainMenuScreen implements Screen{
 	
 		//Design a button
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
-		textButtonStyle.up = skin.newDrawable("blackColor", Color.DARK_GRAY);
-		textButtonStyle.down = skin.newDrawable("blackColor", Color.DARK_GRAY);
-		textButtonStyle.checked = skin.newDrawable("blackColor", Color.BLUE);
-		textButtonStyle.over = skin.newDrawable("blackColor", Color.LIGHT_GRAY);
-		textButtonStyle.font = skin.getFont("defaultFont");
+		textButtonStyle.up = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
+		textButtonStyle.down = menuSkin.newDrawable("blackColor", Color.DARK_GRAY);
+		textButtonStyle.checked = menuSkin.newDrawable("blackColor", Color.BLUE);
+		textButtonStyle.over = menuSkin.newDrawable("blackColor", Color.LIGHT_GRAY);
+		textButtonStyle.font = menuSkin.getFont("defaultFont");
 		
 		//Add to the skin
-		skin.add("defaultButton" , textButtonStyle);
+		menuSkin.add("defaultButton" , textButtonStyle);
 		
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
 		final TextButton textButton= new TextButton("PLAY",textButtonStyle);
@@ -107,8 +108,8 @@ public class MainMenuScreen implements Screen{
 		menubutton.setPosition(80, 700);
 		menubutton.setWidth(BUTTON_WIDTH);
 		menubutton.setHeight(BUTTON_HEIGHT);
-		stage.addActor(textButton);
-		stage.addActor(menubutton);
+		menuStage.addActor(textButton);
+		menuStage.addActor(menubutton);
 		
 	
 		
@@ -154,7 +155,7 @@ public class MainMenuScreen implements Screen{
 		//Add to the skin
 		menuSkin.add("defaultButton" , textButtonStyle);
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton=new TextButton("PLAY",textButtonStyle);
+		menubutton=new TextButton("PLAY",textButtonStyle);
 		textButton.setPosition(200, 200);
 		menuStage.addActor(textButton);
 		menuStage.addActor(textButton);
@@ -165,13 +166,10 @@ public class MainMenuScreen implements Screen{
 	@Override
 	public void dispose(){
 		// TODO Auto-generated method stub
-<<<<<<< HEAD
-		stage.dispose();
-		skin.dispose();
-		//tree.dispose();
-=======
 		menuStage.dispose();
->>>>>>> origin/master
+		menuSkin.dispose();
+		//tree.dispose();
+		menuStage.dispose();
 	}
 
 	@Override
@@ -190,24 +188,17 @@ public class MainMenuScreen implements Screen{
 	public void render( float delta ){
 		Gdx.gl20.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-<<<<<<< HEAD
 		
 	
 		//batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		batch.draw(christmasTree,0,0,700/(700.0f/700.0f),700);
+		gameSprites.begin();
+		gameSprites.draw(christmasTree,0,0,700/(700.0f/700.0f),700);
 	
 		 
 		//sprite.draw(batch);
-		batch.end();
-		stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		stage.draw();
-		
-		
-=======
+		gameSprites.end();
 		menuStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		menuStage.draw();
->>>>>>> origin/master
 	}
 
 	@Override
