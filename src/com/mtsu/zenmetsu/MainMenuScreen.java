@@ -40,8 +40,8 @@ public class MainMenuScreen implements Screen{
 	private Stage menuStage;
 	private SpriteBatch gameSprites;
 	private Game gameContext;
-	final int BUTTON_WIDTH = 200;
-	final int BUTTON_HEIGHT = 100;
+	private final int BUTTON_WIDTH = 200;
+	private final int BUTTON_HEIGHT = 100;
 	public MainMenuScreen( Game initGame ){
 		create();
 		gameContext = initGame;
@@ -75,15 +75,13 @@ public class MainMenuScreen implements Screen{
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Aller_Bd.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 12;
-		BitmapFont font12 = generator.generateFont(parameter); // font size 12 pixels
+		BitmapFont bfont = generator.generateFont(parameter); // font size 12 pixels
 		//font12.scale( 2 );
-		menuSkin.add( "defaultFont" , font12 );
+		menuSkin.add( "defaultFont" , bfont );
 		
 		menuSkin.add( "blackColor", new Texture( pixmap ) );
 		
-		//Store the default font
-		BitmapFont bfont = new BitmapFont();
-		bfont.scale( 1 );
+
 		menuSkin.add( "defaultFont" , bfont );
 		
 	
@@ -155,7 +153,6 @@ public class MainMenuScreen implements Screen{
 		//Add to the skin
 		menuSkin.add("defaultButton" , textButtonStyle);
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		menubutton=new TextButton("PLAY",textButtonStyle);
 		textButton.setPosition(200, 200);
 		menuStage.addActor(textButton);
 		menuStage.addActor(textButton);
@@ -166,9 +163,6 @@ public class MainMenuScreen implements Screen{
 	@Override
 	public void dispose(){
 		// TODO Auto-generated method stub
-		menuStage.dispose();
-		menuSkin.dispose();
-		//tree.dispose();
 		menuStage.dispose();
 	}
 
@@ -188,15 +182,6 @@ public class MainMenuScreen implements Screen{
 	public void render( float delta ){
 		Gdx.gl20.glClearColor(0.2f, 0.2f, 0.2f, 1);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-	
-		//batch.setProjectionMatrix(camera.combined);
-		gameSprites.begin();
-		gameSprites.draw(christmasTree,0,0,700/(700.0f/700.0f),700);
-	
-		 
-		//sprite.draw(batch);
-		gameSprites.end();
 		menuStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		menuStage.draw();
 	}
