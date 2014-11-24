@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
@@ -18,40 +17,31 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFont
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 
 public class MainMenuScreen implements Screen{
-	Texture texture;
-	TextureRegion christmasTree;
-	TextureRegion titlesprite;
+	private Texture texture;
+	private TextureRegion christmasTree;
+	private TextureRegion titlesprite;
 	//OrthographicCamera camera;
-	BitmapFont font;
-	Sprite sprite;
+	private BitmapFont font;
+	private Sprite sprite;
 	private TextButton menubutton;
 
 	private Skin menuSkin;
 	private Stage menuStage;
 	private SpriteBatch gameSprites;
-	private Game gameContext;
+	private GameController gameContext;
 	private final int BUTTON_WIDTH = 200;
 	private final int BUTTON_HEIGHT = 100;
-	public MainMenuScreen( Game initGame ){
+	public MainMenuScreen( GameController initGame ){
 		create();
 		gameContext = initGame;
 	}
 
-	public MainMenuScreen(){
-		create();
-		// setup the dimensions of the menu buttons
-	   
-	}
 	
 	public void create()
 	{
@@ -140,7 +130,7 @@ public class MainMenuScreen implements Screen{
 			public void changed (ChangeEvent event, Actor actor) {
 			System.out.println("Clicked! Is checked: " + textButton.isChecked());
 			textButton.setText("Starting new game");
-			//gameContext.setScreen( new GameScreen());
+			gameContext.setScreen( gameContext.gameScreen );
 			 
 			}
 	});
@@ -169,7 +159,7 @@ public class MainMenuScreen implements Screen{
 	@Override
 	public void hide(){
 		// TODO Auto-generated method stub
-		dispose();
+		this.dispose();
 	}
 
 	@Override
