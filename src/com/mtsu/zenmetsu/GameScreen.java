@@ -15,21 +15,25 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import android.util.Log;
 
 public class GameScreen implements Screen{
 	//Game asset variables
 	private Game gameContext;
-	private Sound tapSound;
-	private Music gameMusic;
-	private OrthographicCamera gameCamera;
-	private SpriteBatch gameSprites;
-	private ShapeRenderer gameShapeRenderer;
-	private float gameWidth;
-	private float gameHeight;
+    private Stage gameStage; //Stage to	handle input
+    private Sound tapSound;  //Sound played when circle is tapped
+	private Music gameMusic; //BGM music
+	private OrthographicCamera gameCamera; //Camera for the screen
+	private SpriteBatch gameSprites; //Used in the case sprites are needed
+	private ShapeRenderer gameShapeRenderer; //Renders the circle
+	private float gameWidth;  //Width of screen
+	private float gameHeight; //Height of screen
 	private Random gameRandGen;	//Generates random numbers. One object so the same seed is kept
 	//Objects
-	private Circle gameCircle;
-	private Actor circleActor;
+	private Circle gameCircle; //Stores the circle data
+    private int score;          //Stores the score
 	//Bounds for the circle spawn
 	private int xmin;
 	private int xmax;
@@ -48,6 +52,8 @@ public class GameScreen implements Screen{
 		gameCamera.setToOrtho( false , gameWidth , gameHeight );
 		//Initialize sprites
 		gameSprites = new SpriteBatch();
+        //Initialize stage
+        gameStage = new Stage();
 		//Initialize renderer
 		gameShapeRenderer = new ShapeRenderer();
 		//Initialize randerer
@@ -56,13 +62,31 @@ public class GameScreen implements Screen{
 		gameCircle = new Circle();
 		gameCircle.setPosition( gameWidth / 2 , gameHeight / 2 );
 		gameCircle.setRadius( 100 );
-		//Initialize circle actor
-		
+        //Add listener to stage
+        gameStage.addListener( new InputListener(){
+        public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+            if( gameCircle.contains( x , y ) )
+            {
+                spawnCircle();
+                score+=1;
+                Log.i("Zenmetsu" , Integer.toString( score ) );
+            }
+            return true;
+            
+        }
+                                 
+        public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+        }
+
+        } 
+        );
 		//Set bounds for the spawning
-		int xmin = (int) ( 0.10f * gameWidth );
-		int xmax = (int) ( gameWidth - xmin );
-		int ymin = xmin;
-		int ymax = (int) ( gameHeight - ymin );
+		xmin = (int) ( 0.10f * gameWidth );
+		xmax = (int) ( gameWidth - xmin );
+        xmin += 0.05f * gameWidth; //Add some extra to the top for a score bar
+		ymin = xmin;
+		ymax = (int) ( gameHeight - ymin );
 		
 	}
 	@Override
@@ -97,6 +121,7 @@ public class GameScreen implements Screen{
 		gameShapeRenderer.setColor( 1,0,0,1);
 		gameShapeRenderer.circle( gameCircle.x , gameCircle.y , gameCircle.radius );
 		gameShapeRenderer.end();
+		//gameStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 	}
 
 	@Override
@@ -118,7 +143,8 @@ public class GameScreen implements Screen{
 	public void show()
 	{
 		// TODO Auto-generated method stub
-		
+		//Initialize input
+       	Gdx.input.setInputProcessor( gameStage );	
 	}
 	
 	public void spawnCircle()

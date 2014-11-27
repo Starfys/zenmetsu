@@ -1,4 +1,6 @@
 zenmetsu
 ========
-TO-DO
-Reaction speed game
+TODO
+Score
+High Scores
+Share to facebook
