@@ -21,6 +21,8 @@ public class GameScreen implements Screen{
 	private OrthographicCamera gameCamera;
 	private SpriteBatch gameSprites;
 	private ShapeRenderer gameShapeRenderer;
+	private float gameWidth;
+	private float gameHeight;
 	//Objects
 	private Circle gameCircle;
 
@@ -28,18 +30,20 @@ public class GameScreen implements Screen{
 	{
 		//Initialize context
 		gameContext = initGame;
+		//Set game coordinates
+		gameWidth = Gdx.graphics.getWidth();
+		gameHeight = Gdx.graphics.getHeight();
 		//Initialize camera
 		gameCamera = new OrthographicCamera();
-		gameCamera.setToOrtho( false , 800 , 480 );
+		gameCamera.setToOrtho( false , gameWidth , gameHeight );
 		//Initialize sprites
 		gameSprites = new SpriteBatch();
 		//Initialize renderer
 		gameShapeRenderer = new ShapeRenderer();
 		//Initialize circle
 		gameCircle = new Circle();
-		gameCircle.setPosition( 400 , 240 );
-		gameCircle.setRadius( 40 );
-
+		gameCircle.setPosition( gameWidth / 2 , gameHeight / 2 );
+		gameCircle.setRadius( 100 );
 		
 	}
 	@Override
@@ -71,7 +75,7 @@ public class GameScreen implements Screen{
 		gameShapeRenderer.setProjectionMatrix( gameCamera.combined );
 		//Draw the circle
 		gameShapeRenderer.begin( ShapeType.Filled );
-		gameShapeRenderer.setColor( 0 , 0 , 1 , 1 );
+		gameShapeRenderer.setColor( 1,0,0,1);
 		gameShapeRenderer.circle( gameCircle.x , gameCircle.y , gameCircle.radius );
 		gameShapeRenderer.end();
 	}
