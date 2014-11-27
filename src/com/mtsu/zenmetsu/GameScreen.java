@@ -1,5 +1,7 @@
 package com.mtsu.zenmetsu;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -11,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameScreen implements Screen{
@@ -23,9 +26,16 @@ public class GameScreen implements Screen{
 	private ShapeRenderer gameShapeRenderer;
 	private float gameWidth;
 	private float gameHeight;
+	private Random gameRandGen;	//Generates random numbers. One object so the same seed is kept
 	//Objects
 	private Circle gameCircle;
-
+	private Actor circleActor;
+	//Bounds for the circle spawn
+	private int xmin;
+	private int xmax;
+	private int ymin;
+	private int ymax;
+	
 	public GameScreen( GameController initGame )
 	{
 		//Initialize context
@@ -40,10 +50,19 @@ public class GameScreen implements Screen{
 		gameSprites = new SpriteBatch();
 		//Initialize renderer
 		gameShapeRenderer = new ShapeRenderer();
+		//Initialize randerer
+		gameRandGen = new Random();
 		//Initialize circle
 		gameCircle = new Circle();
 		gameCircle.setPosition( gameWidth / 2 , gameHeight / 2 );
 		gameCircle.setRadius( 100 );
+		//Initialize circle actor
+		
+		//Set bounds for the spawning
+		int xmin = (int) ( 0.10f * gameWidth );
+		int xmax = (int) ( gameWidth - xmin );
+		int ymin = xmin;
+		int ymax = (int) ( gameHeight - ymin );
 		
 	}
 	@Override
@@ -81,22 +100,35 @@ public class GameScreen implements Screen{
 	}
 
 	@Override
-	public void resize(int arg0, int arg1) {
+	public void resize(int arg0, int arg1)
+	{
 		// TODO Auto-generated method stub
 
 		
 	}
 
 	@Override
-	public void resume() {
+	public void resume()
+	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void show() {
+	public void show()
+	{
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void spawnCircle()
+	{
+		 float xCoord = gameRandGen.nextInt( ( xmax - xmin ) + 1 ) + xmin;
+		 float yCoord = gameRandGen.nextInt( ( ymax - ymin ) + 1 ) + ymin;
+		 gameCircle.setPosition( xCoord , yCoord );
+		 gameCircle.setRadius( 40 );
 	}
 
 }
+
+
