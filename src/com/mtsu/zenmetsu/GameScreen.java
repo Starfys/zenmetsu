@@ -13,10 +13,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import android.util.Log;
 
 public class GameScreen implements Screen{
@@ -39,6 +41,8 @@ public class GameScreen implements Screen{
 	private int xmax;
 	private int ymin;
 	private int ymax;
+    //Font Stuff
+    BitmapFont gameFont;
 	
 	public GameScreen( GameController initGame )
 	{
@@ -70,6 +74,7 @@ public class GameScreen implements Screen{
                 spawnCircle();
                 score+=1;
                 Log.i("Zenmetsu" , Integer.toString( score ) );
+                tapSound.play();
             }
             return true;
             
@@ -87,7 +92,18 @@ public class GameScreen implements Screen{
         xmin += 0.05f * gameWidth; //Add some extra to the top for a score bar
 		ymin = xmin;
 		ymax = (int) ( gameHeight - ymin );
-		
+	    //Configure font
+       	FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Aller_Bd.ttf"));
+		FreeTypeFontParameter fontParameter = new FreeTypeFontParameter();
+		fontParameter.size = 20;
+		gameFont = fontGenerator.generateFont( fontParameter ); // font size 12 pixels
+        //Initialize sound
+        //https://www.freesound.org/people/bubaproducer/sounds/151022/
+        tapSound = Gdx.audio.newSound( Gdx.files.internal( "sounds/laser.wav" ) );
+        //https://www.freesound.org/people/LS/sounds/60048/
+        gameMusic = Gdx.audio.newMusic( Gdx.files.internal( "sounds/music.wav" ) );
+        gameMusic.setLooping(true);
+        gameMusic.play();
 	}
 	@Override
 	public void dispose() {
@@ -108,7 +124,7 @@ public class GameScreen implements Screen{
 	}
 
 	@Override
-	public void render(float arg0) {
+	public void render( float delta ) {
 		//Clear Screen
 		Gdx.gl.glClearColor( 0 , 0 , 0 , 1 );
 		Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
@@ -116,12 +132,20 @@ public class GameScreen implements Screen{
 		gameCamera.update();
 		//Set camera on renderer
 		gameShapeRenderer.setProjectionMatrix( gameCamera.combined );
+        //Update circle
+        gameCircle.radius += delta * 15; //Circle grows at a rate of 15 pixel radius per second
+        if( gameCircle.radius >= 100 )
+        {
+            spawnCircle();
+        }
 		//Draw the circle
 		gameShapeRenderer.begin( ShapeType.Filled );
 		gameShapeRenderer.setColor( 1,0,0,1);
 		gameShapeRenderer.circle( gameCircle.x , gameCircle.y , gameCircle.radius );
 		gameShapeRenderer.end();
-		//gameStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+	    gameSprites.begin();	
+        gameFont.draw( gameSprites , "Score " + Integer.toString( score ) , 10f , gameHeight - 10 );
+        gameSprites.end();
 	}
 
 	@Override
