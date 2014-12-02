@@ -18,9 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class MainMenuScreen implements Screen{
+public class GameOverScreen implements Screen{
 
-	private TextButton menubutton;
 	private Skin menuSkin;
 	private Stage menuStage;
 	private GameController gameContext;
@@ -30,7 +29,7 @@ public class MainMenuScreen implements Screen{
 	private float menuHeight; //Height of screen
 	private OrthographicCamera gameCamera; //Camera for the screen
 	
-	public MainMenuScreen( GameController initGame ){
+	public GameOverScreen( GameController initGame ){
 		create();
 		gameContext = initGame;	
 	}
@@ -39,6 +38,8 @@ public class MainMenuScreen implements Screen{
 		
 		//Initialize stage
 		menuStage = new Stage();
+					
+
 
 		//Set game coordinates
 		menuWidth = Gdx.graphics.getWidth();
@@ -76,18 +77,11 @@ public class MainMenuScreen implements Screen{
 		menuSkin.add("defaultButton" , textButtonStyle);
 		
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton= new TextButton("PLAY",textButtonStyle);
-		textButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.2f );
+		final TextButton textButton= new TextButton("GAME OVER",textButtonStyle);
+		textButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.4f );
 		textButton.setWidth(BUTTON_WIDTH);
 		textButton.setHeight(BUTTON_HEIGHT);
-		
-		//Create main menu logo
-		menubutton = new TextButton("Zenmetsu",textButtonStyle);
-		menubutton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.6f );
-		menubutton.setWidth(BUTTON_WIDTH);
-		menubutton.setHeight(BUTTON_HEIGHT);
 		menuStage.addActor(textButton);
-		menuStage.addActor(menubutton);
 		
 	
 		
@@ -95,7 +89,8 @@ public class MainMenuScreen implements Screen{
 		//listener for play button
 		textButton.addListener(new ChangeListener() {
 			public void changed (ChangeEvent event, Actor actor) {
-			gameContext.setScreen( gameContext.gameScreen );
+			gameContext.setScreen( gameContext.mainMenuScreen );
+			 
 			}
 	});
 		
@@ -111,7 +106,8 @@ public class MainMenuScreen implements Screen{
 
 	@Override
 	public void hide(){
-
+		// TODO Auto-generated method stub
+		this.dispose();
 	}
 
 	@Override

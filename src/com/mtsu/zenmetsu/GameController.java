@@ -6,11 +6,13 @@ public class GameController extends Game{
 	 	
 		public MainMenuScreen mainMenuScreen;
 		public GameScreen gameScreen;
+		public GameOverScreen gameOverScreen;
 	    @Override
 	    public void create()
 	    {
 	    	mainMenuScreen = new MainMenuScreen( this );
 	    	gameScreen = new GameScreen( this );
+	    	gameOverScreen = new GameOverScreen( this );
 	        setScreen( mainMenuScreen );
 	   }
 }
