@@ -1,0 +1,7 @@
+Steven Sheffey Work Log
+Date          Time Spent      Description of work
+11/7/2014     5 hours	      Building an OpenGL activity from a sample tutorial. Will later be repurposed for the game
+11/10/2014    4 hours         Adding comments so code is more understandable
+11/12/2014    2 hours         Researching the APIs used in libGDX and writing a mid-way progress report
+11/26/2014    7 hours         Implemented the basics of the game
+12/1/2014     3 hours         Helped improve workflow of game

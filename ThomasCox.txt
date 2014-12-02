@@ -1,0 +1,4 @@
+Thomas Cox Work Log
+Date          Time Spent      Description of work
+11/17/2014    1 hour          Set up Git/cloned project/researched libgdx/bed time
+
