@@ -35,8 +35,8 @@ public class GameScreen implements Screen{
 	
 	//Objects
 	private Circle gameCircle; //Stores the circle data
-    private int score;          //Stores the score
-    
+    public int score;          //Stores the score
+    private int growSpeed;
 	//Bounds for the circle spawn
 	private int xmin;
 	private int xmax;
@@ -44,7 +44,7 @@ public class GameScreen implements Screen{
 	private int ymax;
 	
     //Font Stuff
-    BitmapFont gameFont;
+    private BitmapFont gameFont;
 	
 	public GameScreen( GameController initGame )
 	{
@@ -102,7 +102,8 @@ public class GameScreen implements Screen{
 		//Set camera on renderer
 		gameShapeRenderer.setProjectionMatrix( gameCamera.combined );
         //Update circle
-        gameCircle.radius += delta * 15; //Circle grows at a rate of 15 pixel radius per second
+		growSpeed += 20 * delta;
+        gameCircle.radius += delta * growSpeed; //Circle grows at a rate of 15 pixel radius per second
         if( gameCircle.radius >= 100 )
         {
         	gameContext.setScreen( gameContext.gameOverScreen );
@@ -140,7 +141,7 @@ public class GameScreen implements Screen{
 		gameCircle = new Circle();
 		gameCircle.setPosition( gameWidth / 2 , gameHeight / 2 );
 		gameCircle.setRadius( 60 );
-		
+		growSpeed = 10;
         //Add listener to stage
         gameStage.addListener( new InputListener(){
         public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {

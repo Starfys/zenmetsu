@@ -4,3 +4,4 @@ Date          Time Spent      Description of work
 11/12/2014    4 hours         Designing the flow of the game, adding a simple main menu.
 11/20/2014    5 hours         Made a more fleshedout workable main menu
 12/1/2014     5 hours         Did significant programming to improve game style
+12/10/2014    2 hours         Powerpoint

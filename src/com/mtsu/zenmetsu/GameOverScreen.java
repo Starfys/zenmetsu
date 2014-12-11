@@ -28,7 +28,7 @@ public class GameOverScreen implements Screen{
 	private float menuWidth;  //Width of screen
 	private float menuHeight; //Height of screen
 	private OrthographicCamera gameCamera; //Camera for the screen
-	
+	private TextButtonStyle textButtonStyle;
 	public GameOverScreen( GameController initGame ){
 		create();
 		gameContext = initGame;	
@@ -70,7 +70,7 @@ public class GameOverScreen implements Screen{
 		menuSkin.add( "defaultFont" , bfont );
 		
 		//Design a button
-		TextButtonStyle textButtonStyle = new TextButtonStyle();
+		textButtonStyle = new TextButtonStyle();
 		textButtonStyle.font = menuSkin.getFont("defaultFont");
 		
 		//Add to the skin
@@ -83,7 +83,7 @@ public class GameOverScreen implements Screen{
 		textButton.setHeight(BUTTON_HEIGHT);
 		menuStage.addActor(textButton);
 		
-	
+
 		
 		
 		//listener for play button
@@ -107,7 +107,6 @@ public class GameOverScreen implements Screen{
 	@Override
 	public void hide(){
 		// TODO Auto-generated method stub
-		this.dispose();
 	}
 
 	@Override
@@ -138,6 +137,12 @@ public class GameOverScreen implements Screen{
 		// TODO Auto-generated method stub
 		//Initialize input
 		Gdx.input.setInputProcessor( menuStage );
+		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
+		final TextButton scoreButton= new TextButton("Score: "+Integer.toString( gameContext.gameScreen.score ),textButtonStyle);
+		scoreButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.2f );
+		scoreButton.setWidth(BUTTON_WIDTH);
+		scoreButton.setHeight(BUTTON_HEIGHT);
+		menuStage.addActor(scoreButton);
 	}
 
 }

@@ -5,3 +5,4 @@ Date          Time Spent      Description of work
 11/12/2014    2 hours         Researching the APIs used in libGDX and writing a mid-way progress report
 11/26/2014    7 hours         Implemented the basics of the game
 12/1/2014     3 hours         Helped improve workflow of game
+12/10/2014    3 hours         Final touches, uploading, powerpoint
