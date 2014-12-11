@@ -11,8 +11,8 @@ Date          Name                  Time Spent      Description of work
 11/26/2014    Steven Sheffey        7 hours         Implemented the basics of the game
 12/1/2014     Taylor Carrick        5 hours         Did significant programming to improve game style
 12/1/2014     Steven Sheffey        3 hours         Helped improve workflow of game
-
-
+12/10/2014    Steven Sheffey        3 hours         Final touches, uploading, powerpoint
+12/10/2014    Taylor Carrick        2 hours         Powerpoint
 MEETINGS
 Date        Name              Time Spent  Description
 11/10/2014  Steven Sheffey    15 min      Discussed git and project logistics
