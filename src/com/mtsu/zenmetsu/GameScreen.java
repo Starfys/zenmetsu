@@ -136,7 +136,7 @@ public class GameScreen implements Screen{
 		// TODO Auto-generated method stub
 		//Initialize input
        	Gdx.input.setInputProcessor( gameStage );	
-    	
+    	score=0;
 		//Initialize circle
 		gameCircle = new Circle();
 		gameCircle.setPosition( gameWidth / 2 , gameHeight / 2 );
@@ -147,8 +147,8 @@ public class GameScreen implements Screen{
         public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
             if( gameCircle.contains( x , y ) )
             {
+                score+=( 100 - gameCircle.radius );
                 spawnCircle();
-                score+=1;
                 Log.i("Zenmetsu" , Integer.toString( score ) );
                 tapSound.play();
             }

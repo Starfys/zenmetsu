@@ -72,8 +72,7 @@ public class MainMenuScreen implements Screen{
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
 		textButtonStyle.font = menuSkin.getFont("defaultFont");
 		
-		//Add to the skin
-		menuSkin.add("defaultButton" , textButtonStyle);
+
 		
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
 		final TextButton textButton= new TextButton("PLAY",textButtonStyle);
