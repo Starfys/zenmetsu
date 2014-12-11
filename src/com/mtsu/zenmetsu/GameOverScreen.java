@@ -29,6 +29,7 @@ public class GameOverScreen implements Screen{
 	private float menuHeight; //Height of screen
 	private OrthographicCamera gameCamera; //Camera for the screen
 	private TextButtonStyle textButtonStyle;
+	private TextButton scoreButton;
 	public GameOverScreen( GameController initGame ){
 		create();
 		gameContext = initGame;	
@@ -77,12 +78,16 @@ public class GameOverScreen implements Screen{
 		menuSkin.add("defaultButton" , textButtonStyle);
 		
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton textButton= new TextButton("GAME OVER",textButtonStyle);
+		TextButton textButton= new TextButton("GAME OVER",textButtonStyle);
 		textButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.4f );
 		textButton.setWidth(BUTTON_WIDTH);
 		textButton.setHeight(BUTTON_HEIGHT);
 		menuStage.addActor(textButton);
-		
+		scoreButton= new TextButton("",textButtonStyle);
+		scoreButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.2f );
+		scoreButton.setWidth(BUTTON_WIDTH);
+		scoreButton.setHeight(BUTTON_HEIGHT);
+		menuStage.addActor(scoreButton);
 
 		
 		
@@ -107,6 +112,7 @@ public class GameOverScreen implements Screen{
 	@Override
 	public void hide(){
 		// TODO Auto-generated method stub
+		scoreButton.setText("");
 	}
 
 	@Override
@@ -138,11 +144,7 @@ public class GameOverScreen implements Screen{
 		//Initialize input
 		Gdx.input.setInputProcessor( menuStage );
 		// Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-		final TextButton scoreButton= new TextButton("Score: "+Integer.toString( gameContext.gameScreen.score ),textButtonStyle);
-		scoreButton.setPosition( menuWidth * 0.5f - 300 , menuHeight * 0.2f );
-		scoreButton.setWidth(BUTTON_WIDTH);
-		scoreButton.setHeight(BUTTON_HEIGHT);
-		menuStage.addActor(scoreButton);
+		scoreButton.setText("Score: "+Integer.toString( gameContext.gameScreen.score ));
 	}
 
 }
